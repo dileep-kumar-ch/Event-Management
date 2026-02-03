@@ -1,3 +1,4 @@
+
 # 🎉 Event Management System API
 
 Welcome! 👋  
@@ -170,3 +171,4 @@ The code is structured cleanly for easy understanding and future scalability.
 ---
 
 ⭐ If you find this project helpful, don’t forget to give it a star!
+
