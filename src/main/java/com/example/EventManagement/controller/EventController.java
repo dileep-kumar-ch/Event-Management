@@ -1,15 +1,9 @@
 package com.example.EventManagement.controller;
 
-import java.util.UUID;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.EventManagement.model.Event;
 import com.example.EventManagement.service.EventService;
@@ -26,16 +20,41 @@ public class EventController {
         this.service = service;
     }
 
-    // CREATE EVENT
+    // ================= CREATE EVENT =================
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Event createEvent(@Valid @RequestBody Event event) {
         return service.createEvent(event);
     }
 
-    // READ EVENT
+    // ================= GET ALL EVENTS =================
+
+    @GetMapping
+    public List<Event> getAllEvents() {
+        return service.getAllEvents();
+    }
+
+    // ================= GET EVENT BY ID =================
+
     @GetMapping("/{id}")
-    public Event getEvent(@PathVariable Long id) {
+    public Event getEventById(@PathVariable Long id) {
         return service.getEventById(id);
+    }
+
+    // ================= UPDATE EVENT =================
+
+    @PutMapping("/{id}")
+    public Event updateEvent(@PathVariable Long id,
+                             @Valid @RequestBody Event event) {
+        return service.updateEvent(id, event);
+    }
+
+    // ================= DELETE EVENT =================
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteEvent(@PathVariable Long id) {
+        service.deleteEvent(id);
     }
 }
