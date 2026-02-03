@@ -23,7 +23,7 @@ public class EventServiceImplementation implements EventService {
     }
 
     @Override
-    public Event getEventById(UUID id) {
+    public Event getEventById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new EventNotFoundException("Event not found: " + id));
     }

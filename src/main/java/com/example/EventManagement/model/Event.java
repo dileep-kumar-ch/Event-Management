@@ -1,10 +1,8 @@
 package com.example.EventManagement.model;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
-import org.hibernate.annotations.UuidGenerator;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
@@ -20,17 +18,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-
+//@Data
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Table(name = "event")
 public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @UuidGenerator
-    private UUID id;
+    private Long id;
 
     @NotBlank
     @Size(min = 3)
@@ -47,8 +43,79 @@ public class Event {
     private String location;
 
     @Column(name = "start_time")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime startTime;
 
     @Column(name = "end_time")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime endTime;
+
+	public Event() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Event(Long id, @NotBlank @Size(min = 3) String title, @NotBlank @Size(min = 5) String description,
+			@NotBlank String location, LocalDateTime startTime, LocalDateTime endTime) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.location = location;
+		this.startTime = startTime;
+		this.endTime = endTime;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public LocalDateTime getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(LocalDateTime startTime) {
+		this.startTime = startTime;
+	}
+
+	public LocalDateTime getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(LocalDateTime endTime) {
+		this.endTime = endTime;
+	}   
+    
+    
+    
+
+  
 }

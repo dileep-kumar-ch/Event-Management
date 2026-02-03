@@ -35,7 +35,7 @@ public class EventController {
 
     // READ EVENT
     @GetMapping("/{id}")
-    public Event getEvent(@PathVariable UUID id) {
+    public Event getEvent(@PathVariable Long id) {
         return service.getEventById(id);
     }
 }
