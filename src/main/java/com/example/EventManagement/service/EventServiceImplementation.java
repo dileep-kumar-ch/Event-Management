@@ -1,7 +1,5 @@
 package com.example.EventManagement.service;
 
-import java.util.UUID;
-
 import org.springframework.stereotype.Service;
 
 import com.example.EventManagement.exception.EventNotFoundException;
